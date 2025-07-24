@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>Polygon HashMining</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta property="og:title" content="Hash Mining - Polygon Network">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="index.html">
+  <meta property="og:image" content="logo.png">
+  <meta property="og:description" content="Hash Mining - Earn 3% Forever!">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    body {
+      background-color: #000000;
+      color: #c77dff;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    h2, h1, p, a, span, li {
+      color: #c77dff;
+      text-shadow: 0 0 5px #e600ff, 0 0 10px #00ffff;
+    }
+
+    .button {
+      background: linear-gradient(135deg, #8e2de2, #4a00e0);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 1.1em;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00ffff, 0 0 20px #8e2de2;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #e600ff, 0 0 30px #00ffff;
+    }
+
+    input {
+      background-color: #111;
+      border: 1px solid #8e2de2;
+      color: #fff;
+      padding: 8px;
+      font-family: 'Orbitron', sans-serif;
+      border-radius: 5px;
+      box-shadow: 0 0 5px #00ffff;
+    }
+
+    .image.featured img {
+      border: 2px solid #8e2de2;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00ffff;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgb(229, 196, 5); }
+      50% { box-shadow: 0 0 20px rgb(255, 51, 0), 0 0 30px rgb(0, 38, 255); }
+      100% { box-shadow: 0 0 5px rgb(2, 151, 5); }
+    }
+
+    #banner-wrapper, .box.feature, #features-wrapper, #main-wrapper, #footer-wrapper {
+      animation: glow 3s infinite;
+      border-radius: 10px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 10px rgb(2, 215, 59);
+    }
+
+    .tally-text span, #production, #contractBal {
+      font-weight: bold;
+      color: #fff;
+    }
+
+	 /* Loading Screen */
+	 #loading-screen {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      color: #0ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      font-size: 2em;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #f0f;
+    }
+  </style>
+</head>
+<body class="is-preload homepage">
+	<div id="loading-screen">
+		<div id="loading-bar" style="width: 60%; height: 30px; border: 2px solid #0ff; position: relative;">
+		  <div id="progress-bar" style="background: linear-gradient(to right, #0ff, #f0f); height: 100%; width: 0%;"></div>
+		</div>
+		<p id="loading-text">Initializing Protocol... 0%</p>
+	  </div>
+	  <script>
+		let progress = 0;
+		const progressBar = document.getElementById("progress-bar");
+		const loadingText = document.getElementById("loading-text");
+		const loadingScreen = document.getElementById("loading-screen");
+	  
+		const interval = setInterval(() => {
+		  progress += 1;
+		  progressBar.style.width = progress + "%";
+		  loadingText.textContent = `Initializing Mining Protocol... ${progress}%`;
+		  if (progress >= 100) {
+			clearInterval(interval);
+			loadingScreen.style.display = "none";
+		  }
+		}, 30);
+	  </script>
+  <div id="page-wrapper">
+
+			
+
+
+		
+<div id="banner-wrapper">
+  <div style="display: flex; justify-content: center; align-items: center; padding: 10px;">
+    <img src="logo.png" alt="Small Image 1" style="max-width: 50%; height: auto;">
+  </div>
+  <div id="banner" class="box container">
+    <div class="row">
+      <div class="col-12" style="text-align: center; padding-top: 20px;">
+        <!-- Neon Mining Animation -->
+        <div class="mining-container">
+          <div class="line left"></div>
+          <div class="mining-text">3% Forever</div>
+          <div class="line right"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .mining-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    position: relative;
+  }
+
+  .line {
+    position: absolute;
+    width: 6px;
+    height: 100px;
+    background: violet;
+    box-shadow: 0 0 20px violet;
+    transition: transform 0.5s ease, opacity 0.3s ease;
+  }
+
+  .line.left {
+    left: 50%;
+    transform: translateX(0);
+  }
+
+  .line.right {
+    right: 50%;
+    transform: translateX(0);
+  }
+
+  .mining-text {
+    font-family: 'Orbitron', sans-serif;
+    color: violet;
+    font-size: 2.5rem;
+    text-shadow: 0 0 20px violet;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    z-index: 1;
+  }
+
+  .blink {
+    animation: blinkAnim 0.2s alternate 3;
+  }
+
+  @keyframes blinkAnim {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+</style>
+
+<script>
+  const leftLine = document.querySelector('.line.left');
+  const rightLine = document.querySelector('.line.right');
+  const text = document.querySelector('.mining-text');
+
+  function playSequence() {
+    leftLine.classList.add("blink");
+    rightLine.classList.add("blink");
+
+    setTimeout(() => {
+      leftLine.classList.remove("blink");
+      rightLine.classList.remove("blink");
+
+      // Move lines outward
+      leftLine.style.transform = "translateX(-200px)";
+      rightLine.style.transform = "translateX(200px)";
+
+      setTimeout(() => {
+        text.style.opacity = 1;
+
+        setTimeout(() => {
+          leftLine.style.transform = "translateX(0)";
+          rightLine.style.transform = "translateX(0)";
+          text.style.opacity = 0;
+
+          setTimeout(() => {
+            playSequence();
+          }, 1000);
+        }, 2000);
+      }, 500);
+    }, 600);
+  }
+
+  window.onload = playSequence;
+</script>
+			
+
+			<!-- Features -->
+				<div id="features-wrapper">
+					<div class="container">
+						<div class="row">
+							<div class="col-4 col-12-medium">
+
+								<!-- Box Your Miners -->
+									<section class="box feature">
+										<a href="#" class="image featured"><img src="images/hunter.png" alt="" /></a>
+										<div class="inner">
+											<header>
+												<h2>Buy GPU Miner</h2>
+											</header>	
+												<p class="tally-text">You have <span class="numminers">0</span> GPU Miner</p>
+												<p class="pphr"></p>Mining Rate <span id="production">0</span></h2> Hash per hour</p>
+												<br>
+												<div class="spend-input"><p style="color:white;">Enter POL Amount & Click Buy Mining Rig</p>
+												<input class="form-control" id="ethtospend" onchange="updateBuyPrice()" step="1" type="number" value="1"> <span class="bnb-text">POL</span>
+												</div>
+											<br>
+												<a class="button" onclick="buyEggs2(); document.getElementById('lostmojo').pause(); document.getElementById('lostmojo2').play() " role="button">Buy <span id="eggstobuy">?</span> Mining Rig</a>
+										</div>
+									</section>
+
+							</div>
+							<div class="col-4 col-12-medium">
+
+								<!-- Box Your MATIC -->
+									<section class="box feature">
+										<a href="#" class="image featured"><img src="images/yourbear.png" alt="" /></a>
+										<div class="inner">
+											<header>
+												<h2>Your Miner</h2>
+											</header>
+											<p class="tally-text">You have <span id="sellprice">?</span> withdrawable POL </p>
+											<p><span id="userTrx">You have ? POL in your wallet</span></p>
+											<br>
+											<p><a class="button" onclick="hatchEggs1(); document.getElementById('lostmojo').pause(); document.getElementById('lostmojo2').play()" role="button">Upgrade</a></p>
+											<br>	
+											<p></p><a class="button" onclick="sellEggs(displayTransactionMessage); document.getElementById('lostmojo').pause(); document.getElementById('lostmojo3').play(); document.getElementById('sellprice')" role="button">Withdraw</a></p>
+									</div>
+									</section>
+
+							</div>
+							<div class="col-4 col-12-medium">
+
+								<!-- Box The Mine-->
+									<section class="box feature">
+										<a href="#" class="image featured"><img src="images/bearland.png" alt="" /></a>
+										<div class="inner">
+											<header>
+												<h2>Global Miner Pool</h2>
+												
+											</header>
+											<p><span id="contractBal"> POL </span></p>
+										</div>
+									</section>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Main -->
+				<div id="main-wrapper">
+					<div class="container">
+						<div class="row gtr-200">
+							<!-- <div class="col-4 col-12-medium"> -->
+
+								<!-- Sidebar 
+									<div id="sidebar">
+										<section class="widget thumbnails">
+											<h3>Interesting stuff</h3>
+											<div class="grid">
+												<div class="row gtr-50">
+													<div class="col-6"><a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a></div>
+													<div class="col-6"><a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a></div>
+													<div class="col-6"><a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a></div>
+													<div class="col-6"><a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a></div>
+												</div>
+											</div>
+											<a href="#" class="button icon fa-file-alt">More</a>
+										</section>
+									</div>
+-->
+							<!-- </div> -->
+							<div class="col-8 col-12-medium imp-medium">
+
+								<!-- Content -->
+									<div id="content">
+										<section class="last">
+											<h2>So what's this all about?</h2>
+<p>Miner pays 3.0% daily, based on the current hash power output. The mining efficiency rate adjusts dynamically as you and others upgrade rigs, reinvest hash earnings, and withdraw POL.</p>
+<p>The goal of the platform is to upgrade your mining rigs earlier and more frequently than others. This increases your hash output, generating more POL over time. Upgrading your daily POL rewards into more rigs can triple your mining power in 30 days or less.</p>
+<p>Earn 10%, 8%, 5%, 3%, 2% of the POL deposited by anyone who joins mining using your referral link: (Please copy your referal link) <a id="playerreflink" onclick="copyRef()">?</a></p>
+
+									
+										</section>
+									</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!-- Footer -->
+				<div id="footer-wrapper">
+					<footer id="footer" class="container">
+						<div class="row">
+							<div class="col-3 col-6-medium col-12-small">
+							    
+									
+						<div class="row">
+							<div class="col-12">
+								<div id="copyright">
+									<ul class="menu">
+										<li>&copy; 2025. All rights reserved</li><li><a href=""></a></li>
+									</ul>
+									
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+
+			</div>
+
+			<script src="assets/js/jquery.min.js"></script>
+		<!--	<script src="assets/js/jquery.dropotron.min.js"></script> -->
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/ie-emulation-modes-warning.js"></script>
+			<script src="assets/js/web3.min.js"></script>
+			<script src="interface.js"></script>
+			<script src="main.js"></script>
+			<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+			<script src="ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+			<script src="bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<script src="ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
+		  </div>
+
+		  <div class="bottom-nav">
+			<a href="#"><img src="home.jpg"><span>Home</span></a>
+			<a href="https://t.me/hashminings"><img src="telegram.svg"><span>Telegram</span></a>
+			<a href="https://polygonscan.com/address/0xf0661da1d6021aaf871f3594beaac2aa337241b3"><img src="polygon-zkevm.svg"><span>Contract</span></a>
+			<a href="#"><img src="whitepaper.jpg"><span>Whitepaper</span></a>
+		  </div>
+		</body>
+		</html>
