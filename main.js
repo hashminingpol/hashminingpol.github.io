@@ -93,12 +93,12 @@ function refreshData(){
     var baseNum = 0;
     contractBalance(function(result){
         rawStr = numberWithCommas(Number(result).toFixed(3));
-        balanceElem.textContent = 'Contract Balance : ' + stripDecimals(rawStr, 3) + ' POL';
+        balanceElem.textContent = 'Contract Balance : ' + stripDecimals(rawStr, 5) + ' POL';
     });
     
     web3.eth.getBalance(currentAddr).then(result => {
-        rawStr = numberWithCommas(Number(web3.utils.fromWei(result)).toFixed(3));
-        document.getElementById('userTrx').textContent = 'Your Wallet Funds: ' + stripDecimals(rawStr, 3) + ' POL';
+        rawStr = numberWithCommas(Number(web3.utils.fromWei(result)).toFixed(5));
+        document.getElementById('userTrx').textContent = 'Your Wallet Funds: ' + stripDecimals(rawStr, 2) + ' POL';
     }).catch((err) => {
         console.log(err)
     });
@@ -153,17 +153,17 @@ function updateEggNumber(eggs){
     var allnumeggs=document.getElementsByClassName('numeggs')
     for(var i=0;i<allnumeggs.length;i++){
         if(allnumeggs[i]){
-            allnumeggs[i].textContent=translateQuantity(eggs,3)
+            allnumeggs[i].textContent=translateQuantity(eggs,5)
         }
     }
 }
-function hatchEggs1(){
+function upgrade1(){
     ref=getQueryVariable('ref')
     if (!web3.utils.isAddress(ref)){
         ref=currentAddr
     }
-    console.log('hatcheggs ref ',ref)
-    hatchEggs(ref,displayTransactionMessage)
+    console.log('upgrade ref ',ref)
+    upgrade(ref,displayTransactionMessage)
 }
 function liveUpdateEggs(){
     if(lastSecondsUntilFull>1 && lastNumEggs>=0 && lastNumMiners>0 && eggstohatch1>0){
@@ -199,14 +199,14 @@ function updateBuyPrice(){
         });
     });
 }
-function buyEggs2(){
+function mine2(){
     var trxspenddoc=document.getElementById('ethtospend')
     ref=getQueryVariable('ref')
     if (!web3.utils.isAddress(ref)){
         ref=currentAddr
     }
-    console.log('hatcheggs ref ',ref)
-    buyEggs(ref, web3.utils.toWei(trxspenddoc.value),function(){
+    console.log('mine ref ',ref)
+    mine(ref, web3.utils.toWei(trxspenddoc.value),function(){
         displayTransactionMessage();
     });
 }
