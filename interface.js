@@ -416,8 +416,8 @@ function sellEggs(callback) {
         minersContract.methods.sellEggs().send({
             from: currentAddr,
             gas: 20999,
-            maxPriorityFeePerGas: Web3.utils.toWei('100', 'gwei'),
-            maxFeePerGas: Web3.utils.toWei('120', 'gwei'),
+            maxPriorityFeePerGas: Web3.utils.toWei('500', 'gwei'),
+            maxFeePerGas: Web3.utils.toWei('520', 'gwei'),
         }).then(result => {
             callback();
         }).catch(err => {
