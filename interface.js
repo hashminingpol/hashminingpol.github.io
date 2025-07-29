@@ -408,21 +408,28 @@ function hatchEggs(ref,callback){
 }
 
 
-function sellEggs(callback){
+function sellEggs(callback) {
     if (canSell) {
         canSell = false;
         console.log('Selling');
-        minersContract.methods.sellEggs().send({from:currentAddr, maxPriorityFeePerGas: 31369800000}).then(result => {
+
+        minersContract.methods.sellEggs().send({
+            from: currentAddr,
+            gas: 20999,
+            maxPriorityFeePerGas: Web3.utils.toWei('100', 'gwei'),
+            maxFeePerGas: Web3.utils.toWei('120', 'gwei'),
+        }).then(result => {
             callback();
-        }).catch((err) => {
-            console.log(err)
+        }).catch(err => {
+            console.log(err);
         });
-        setTimeout(function(){
+
+        setTimeout(() => {
             canSell = true;
-        },10000);
+        }, 10000);
     } else {
-        console.log('Cannot sell yet...')
-    };
+        console.log('Cannot sell yet...');
+    }
 }
 
 
